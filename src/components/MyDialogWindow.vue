@@ -6,17 +6,25 @@
             :value="modelValue.name"
             @input="updateInput"
         ></my-input>
+                <button
+                    class="delete-button"
+                    @click="$emit('clearName')"
+                >X</button>
         <my-input
             :value="modelValue.body"
             @input="updateInput1"
         ></my-input>
+              <button
+                  @click="$emit('clearBody')"
+                  class="delete-button"
+              >X</button>
       </div>
       <MyButtonWhite
           v-if="status === true "
           @click="$emit('submit')"
           class="edit-button">
           create
-          </MyButtonWhite>
+      </MyButtonWhite>
       <MyButtonWhite
           v-else
           @click="$emit('submit')"
@@ -88,6 +96,22 @@ export default {
   width: 30%;
   margin-right: 5px;
   height: 95%;
+  transition: all 0.25s;
+}
 
+.edit-button:hover{
+  transition: all 0.25s;
+  background-color: gray;
+
+}
+.delete-button{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border: solid 2px gray;
+  transition: all ease-in-out 0.25s;
 }
 </style>

@@ -1,6 +1,4 @@
 <template>
-
-
   <input
       :value="modelValue"
       @input="updateInput"
@@ -40,4 +38,12 @@ export default {
   border: solid black 2px;
   border-radius: 16px;
 }
+
+
+
+
+
+
+
+
 </style>

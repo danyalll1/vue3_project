@@ -8,6 +8,8 @@
       @body="SetBody"
       v-model:modelValue="EditedItem"
       @submit="SubmitEditing"
+      @clearName="ClearName"
+      @clearBody="ClearBody"
   ></my-dialog-window>
 
 
@@ -45,7 +47,7 @@ export default {
   data() {
     return {
       checkList: [
-
+        {id:1,name:'JS',body:'cool'}
       ],
       EditPopUpVisible: false,
       EditedItem: {},
@@ -81,6 +83,12 @@ export default {
     CreateItem(){
       this.EditedItemStatus = true
       this.SubmitEditing()
+    },
+    ClearName(){
+      this.EditedItem.name = ''
+    },
+    ClearBody(){
+      this.EditedItem.body = ''
     },
 
 

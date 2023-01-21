@@ -20,5 +20,11 @@ export default {
   background: white;
   border-radius: 16px;
   border: solid black;
+  transition: ease-in-out 0.25s;
+}
+.btn-white:hover{
+  transition: ease-in-out 0.25s;
+  background-color: gray;
+  color: white;
 }
 </style>
