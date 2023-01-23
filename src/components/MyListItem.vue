@@ -35,5 +35,21 @@ export default {
 </script>
 
 <style scoped>
+  .list-item{
+    margin: 2% 2% 0 0;
+    width: 300px;
+    height: 200px;
+    background-color: rgba(250,250,250,0.8);
+    border-radius: 16px;
+    border: solid 2px black;
+    padding: 1%;
+    box-sizing: border-box;
+    transition: transform ease-in-out 0.2s;
+  }
 
+  .list-item p {
+    height: 80px;
+    word-break: break-all;
+
+  }
 </style>

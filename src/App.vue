@@ -1,30 +1,35 @@
 <template>
+  <div class="root">
+    <my-dialog-window
+        v-model:show="EditPopUpVisible"
+        v-model:status="EditedItemStatus"
+        @hide="HidePopup"
+        @name="SetName"
+        @body="SetBody"
+        v-model:modelValue="EditedItem"
+        @submit="SubmitEditing"
+        @clearName="ClearName"
+        @clearBody="ClearBody"
+    ></my-dialog-window>
+    <MyButtonBlack
 
-  <my-dialog-window
-      v-model:show="EditPopUpVisible"
-      v-model:status="EditedItemStatus"
-      @hide="HidePopup"
-      @name="SetName"
-      @body="SetBody"
-      v-model:modelValue="EditedItem"
-      @submit="SubmitEditing"
-      @clearName="ClearName"
-      @clearBody="ClearBody"
-  ></my-dialog-window>
+        style="margin: 5% 0 0 0; position: absolute; top: -10%;"
+        @click="CreateItem"
+    >create
+    </MyButtonBlack>
+    <div class="wrap">
 
 
-  <MyButtonBlack
-      @click="CreateItem"
+      <MyCheckList
+          :items="checkList"
+          @delete="DeleteItem"
+          @edit="EditItem"
+      >
 
-  >create
-  </MyButtonBlack>
-  <MyCheckList
-      :items="checkList"
-      @delete="DeleteItem"
-      @edit="EditItem"
-  >
+      </MyCheckList>
+    </div>
+  </div>
 
-  </MyCheckList>
 </template>
 
 <script>
@@ -47,7 +52,7 @@ export default {
   data() {
     return {
       checkList: [
-        {id:1,name:'JS',body:'cool'}
+        {}
       ],
       EditPopUpVisible: false,
       EditedItem: {},
@@ -55,9 +60,16 @@ export default {
     }
   },
 
+  mounted() {
+    if(localStorage.item){
+      this.checkList = JSON.parse(localStorage.item)
+    }
+  },
+
   methods: {
     DeleteItem(item) {
       this.checkList = this.checkList.filter(i => i.id !== item.id)
+      this.SetLocalStorage()
     }
     ,
 
@@ -90,6 +102,9 @@ export default {
     ClearBody(){
       this.EditedItem.body = ''
     },
+    SetLocalStorage(){
+      localStorage.setItem('item',JSON.stringify(this.checkList))
+    },
 
 
 
@@ -99,9 +114,10 @@ export default {
         case true:
           this.EditPopUpVisible === false ? this.EditedItem = JSON.parse(JSON.stringify({})) : true
           this.EditPopUpVisible === false ? this.EditPopUpVisible = true : true
-          if (Object.keys(this.EditedItem).length != 0) {
+          if (Object.keys(this.EditedItem).length > 0) {
             this.EditedItem.id = Date.now()
             this.checkList.push(this.EditedItem)
+            this.SetLocalStorage()
             this.HidePopup()
           }
           else{
@@ -113,6 +129,7 @@ export default {
           this.HidePopup()
           this.checkList[index].name = this.EditedItem.name
           this.checkList[index].body = this.EditedItem.body
+          this.SetLocalStorage()
           break;
       }
 
@@ -127,5 +144,23 @@ export default {
 * {
   padding: 0;
   margin: 0;
+}
+
+.root{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  justify-content:  center;
+  display: flex;
+}
+
+.wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+  padding-left: 5%;
+
 }
 </style>

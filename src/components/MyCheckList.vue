@@ -33,5 +33,11 @@ export default {
 </script>
 
 <style scoped>
-
+ .checkList{
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   width: 80%;
+   height: 70%;
+ }
 </style>
