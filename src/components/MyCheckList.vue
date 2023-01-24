@@ -6,6 +6,7 @@
                 :MyItem="item"
                 @delete="$emit('delete',item)"
                 @edit="$emit('edit',item)"
+                :style="{ backgroundColor: item.color}"
     >
     </MyListItem>
   </div>
@@ -34,10 +35,11 @@ export default {
 
 <style scoped>
  .checkList{
-   display: flex;
+
+   display: grid;
+   grid-template-columns: repeat(3, 350px);
+   grid-auto-rows: 350px;
    align-items: center;
-   flex-wrap: wrap;
-   width: 80%;
-   height: 70%;
+
  }
 </style>

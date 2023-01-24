@@ -64,6 +64,7 @@ export default {
 
 <style scoped>
 .background {
+  z-index: 20000;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -114,4 +115,5 @@ export default {
   border: solid 2px gray;
   transition: all ease-in-out 0.25s;
 }
+
 </style>

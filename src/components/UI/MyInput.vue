@@ -39,6 +39,14 @@ export default {
   border-radius: 16px;
 }
 
+.MyInputWhite:focus{
+  transition: all ease-in-out 0.25s;
+  color: white;
+  background-color: gray;
+  border-color: white;
+  outline: white;
+}
+
 
 
 

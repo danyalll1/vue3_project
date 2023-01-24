@@ -11,12 +11,14 @@
         @clearName="ClearName"
         @clearBody="ClearBody"
     ></my-dialog-window>
-    <MyButtonBlack
 
-        style="margin: 5% 0 0 0; position: absolute; top: -10%;"
-        @click="CreateItem"
-    >create
-    </MyButtonBlack>
+    <div class="header">
+      <h1>Notes</h1>
+      <MyButtonBlack
+          @click="CreateItem"
+      >create
+      </MyButtonBlack>
+    </div>
     <div class="wrap">
 
 
@@ -57,6 +59,7 @@ export default {
       EditPopUpVisible: false,
       EditedItem: {},
       EditedItemStatus: true
+
     }
   },
 
@@ -105,6 +108,11 @@ export default {
     SetLocalStorage(){
       localStorage.setItem('item',JSON.stringify(this.checkList))
     },
+    GetColor(){
+        let color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+        return color;
+    },
+
 
 
 
@@ -115,6 +123,7 @@ export default {
           this.EditPopUpVisible === false ? this.EditedItem = JSON.parse(JSON.stringify({})) : true
           this.EditPopUpVisible === false ? this.EditPopUpVisible = true : true
           if (Object.keys(this.EditedItem).length > 0) {
+            this.EditedItem.color = this.GetColor()
             this.EditedItem.id = Date.now()
             this.checkList.push(this.EditedItem)
             this.SetLocalStorage()
@@ -147,20 +156,33 @@ export default {
 }
 
 .root{
+  flex-direction: column;
   width: 100%;
-  height: 100vh;
   position: absolute;
   justify-content:  center;
   display: flex;
 }
 
+.header{
+  margin-top: 2%;
+  margin-bottom: 2%;
+  font-family: 'Gothic A1', sans-serif;;
+  font-weight: 400;
+  font-size: 26px;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .wrap{
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 90%;
-  height: 90%;
-  padding-left: 5%;
+  width: 100%;
+  height: 100%;
 
 }
+
+
 </style>

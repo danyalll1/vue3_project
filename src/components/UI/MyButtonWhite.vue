@@ -10,7 +10,7 @@ export default {
 
 <style scoped>
 .btn-white{
-  font-family: 'Gothic A1', sans-serif;;
+  font-family: 'Gothic A1', sans-serif;
   font-weight: 400;
   font-size: 20px;
   cursor: pointer;
@@ -19,7 +19,8 @@ export default {
   color: black;
   background: white;
   border-radius: 16px;
-  border: solid black;
+  border:none;
+  box-shadow: 3px 3px 10px rgba(200, 200, 200, 0.8), -3px 3px 10px rgba(200, 200, 200, 0.8) ;
   transition: ease-in-out 0.25s;
 }
 .btn-white:hover{
