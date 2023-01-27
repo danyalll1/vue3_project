@@ -1,16 +1,19 @@
 <template>
+  <transition name="window">
+  <my-dialog-window
+      v-model:show="EditPopUpVisible"
+      v-model:status="EditedItemStatus"
+      @hide="HidePopup"
+      @name="SetName"
+      @body="SetBody"
+      v-model:modelValue="EditedItem"
+      @submit="SubmitEditing"
+      @clearName="ClearName"
+      @clearBody="ClearBody"
+  ></my-dialog-window>
+  </transition>
   <div class="root">
-    <my-dialog-window
-        v-model:show="EditPopUpVisible"
-        v-model:status="EditedItemStatus"
-        @hide="HidePopup"
-        @name="SetName"
-        @body="SetBody"
-        v-model:modelValue="EditedItem"
-        @submit="SubmitEditing"
-        @clearName="ClearName"
-        @clearBody="ClearBody"
-    ></my-dialog-window>
+
 
     <div class="header">
       <h1>Notes</h1>
@@ -38,7 +41,6 @@
 
 
 import MyButtonBlack from "@/components/UI/MyButtonBlack";
-
 import MyCheckList from "@/components/MyCheckList";
 import MyDialogWindow from "@/components/MyDialogWindow";
 
@@ -71,7 +73,8 @@ export default {
 
   methods: {
     DeleteItem(item) {
-      this.checkList = this.checkList.filter(i => i.id !== item.id)
+      console.log (this.checkList)
+      this.checkList.splice(this.checkList.findIndex(el => el.id ===item),1)
       this.SetLocalStorage()
     }
     ,
@@ -125,6 +128,7 @@ export default {
           if (Object.keys(this.EditedItem).length > 0) {
             this.EditedItem.color = this.GetColor()
             this.EditedItem.id = Date.now()
+            console.log(this.EditedItem)
             this.checkList.push(this.EditedItem)
             this.SetLocalStorage()
             this.HidePopup()
@@ -184,5 +188,25 @@ export default {
 
 }
 
+.window-enter-from{
+  opacity: 0;
+}
+.window-enter-to {
+  opacity: 1;
+}
+.window-enter-active {
+  transition: all ease-in-out .75s;
+}
+.window-leave-from{
+  opacity: 1;
+}
+.window-leave-to {
+  opacity: 0;
+}
+.window-leave-active {
+
+  transform: translateY(-200px);
+  transition: ease-in-out .75s;
+}
 
 </style>

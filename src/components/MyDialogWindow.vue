@@ -1,6 +1,9 @@
 <template>
   <div class="background" v-if="show === true" @click="$emit('hide')">
-    <div @click.stop class="popup-window">
+
+    <transition name="dive">
+    <div @click.stop v-if="show === true" class="popup-window">
+
       <div class="TextArea">
         <my-input
             :value="modelValue.name"
@@ -32,7 +35,9 @@
           edit
       </MyButtonWhite>
     </div>
+    </transition>
   </div>
+
 </template>
 
 
@@ -65,8 +70,8 @@ export default {
 <style scoped>
 .background {
   z-index: 20000;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  background-color: rgba(0 ,0 ,0,0.2);
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -115,5 +120,27 @@ export default {
   border: solid 2px gray;
   transition: all ease-in-out 0.25s;
 }
+
+.dive-enter-from{
+  transform: translateY(-200px);
+}
+.dive-enter-to {
+  transform: translateY(0px);
+}
+.dive-enter-active {
+  transition: all ease-in-out .75s;
+}
+.dive-leve-from{
+
+}
+.dive-leve-to {
+
+}
+.dive-leve-active {
+  transition: ease-in-out .75s;
+}
+
+
+
 
 </style>

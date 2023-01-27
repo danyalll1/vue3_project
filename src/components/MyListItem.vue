@@ -1,20 +1,23 @@
 <template>
+
+
+
   <div class="list-item">
     <div class="list-item__wrap">
       <h1>{{MyItem.name}}</h1>
       <p>{{MyItem.body}}</p>
       <div class="button-container">
         <MyButtonBlack
-            @click="$emit('delete',MyItem)"
+            @click="$emit('delete',MyItem.id)"
         >delete</MyButtonBlack>
         <MyButtonWhite
             @click="$emit('edit',MyItem)"
         >edit</MyButtonWhite>
       </div>
-
     </div>
-
   </div>
+
+
 </template>
 <script>
 
@@ -39,6 +42,7 @@ export default {
 
 <style scoped>
   .list-item{
+    display: block;
     position: relative;
     font-family: 'Gothic A1', sans-serif;
     width: 300px;
@@ -71,11 +75,12 @@ export default {
   }
   .list-item__wrap{
 
-
   position: relative;
     height: 100%;
-    
 
   }
+
+
+
 
 </style>
