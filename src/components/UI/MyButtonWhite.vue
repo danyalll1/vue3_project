@@ -20,12 +20,17 @@ export default {
   background: white;
   border-radius: 16px;
   border:none;
-  box-shadow: 3px 3px 10px rgba(200, 200, 200, 0.8), -3px 3px 10px rgba(200, 200, 200, 0.8) ;
-  transition: ease-in-out 0.25s;
+  box-shadow: 3px 3px 10px rgba(50, 50, 50, 0.4), -3px 3px 10px rgba(50, 50, 50, 0.4) ;
+  transition: ease-in-out 0.4s;
 }
 .btn-white:hover{
-  transition: ease-in-out 0.25s;
-  background-color: gray;
-  color: white;
+  transition: ease-in-out 0.4s;
+  background-color: transparent ;
+  backdrop-filter: saturate(0.5); /* контрастный background-color */
+
+
+
+
+
 }
 </style>

@@ -4,16 +4,19 @@
 
 
 
-               <transition-group  tag="div" class="checkList" name="list" v-if="items.length > 0">
-                   <MyListItem class="item"
-                               v-for="item in items"
-                               :key="item"
-                               :MyItem="item"
-                               @delete="$emit('delete',item.id)"
-                               @edit="$emit('edit',item)"
-                               :style="{ backgroundColor: item.color}"
-                   >
-                   </MyListItem>
+               <transition-group  tag="div" class="checkList" name="list" v-if="items.length > 0" >
+                 <div class="wrap" v-for="item in items"
+                      :key="item">
+                     <MyListItem class="item"
+                                  v-if="item.name !== 0"
+                                 :MyItem="item"
+                                 @delete="$emit('delete',item.id)"
+                                 @edit="$emit('edit',item)"
+                                 :style="{ backgroundColor: item.color}"
+                     >
+                     </MyListItem>
+                 </div>
+
               </transition-group>
 
 
@@ -48,74 +51,70 @@ export default {
 
 <style scoped>
  .checkList{
-   position: static;
+   position: absolute;
    z-index: 1;
    display: grid;
    grid-template-columns: repeat(3, 350px);
    grid-auto-rows: 350px;
  }
 
+ .wrap{
+   display: flex;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+ }
 
  /*list transitions*/
 
+.list-leave-from{
+  transform: scale(1);
+  opacity: 1;
+}
+.list-leave-to{
+  transform: scale(0.4);
+  transition: transform ease 0.8s;
+  opacity: 0;
 
+}
 
- .list-enter-active {
-   display: block;
-   animation: bounce-in .6s;
- }
- .list-leave-active {
+.list-leave-active{
+  position: absolute;
+  transition: all ease 0.4s;
 
-   animation: bounce-in .6s reverse;
- }
- @keyframes bounce-in {
-   0% {
-     transform: scale(0.4);
-   }
-   50% {
-     transform: scale(1.2);
-   }
-   100% {
-     transform: scale(1);
-   }
- }
-    .list-leave-to{
-   position: absolute;
+}
 
-   }
-   .list-move{
-     transition: translate ease 0.7s;
-   }
+.list-move{
+  transition: transform ease 0.8s;
+}
 
 
 
+@keyframes leaving {
 
- /*.list-enter-from{*/
- /*  opacity: 0;*/
- /*  transform: scale(0.6) ;*/
+  0%{opacity: 1;
+  transform: scale(1);
 
- /*}*/
- /*.list-enter-to, .list-leave-from{*/
- /*  opacity: 1;*/
- /*  transform: scale(1);*/
- /*}*/
- /*.list-enter-active{*/
- /*  transition: all ease 0.5s;*/
- /*}*/
- /*.list-leave-to{*/
- /*  position: absolute;*/
- /*  opacity: 0;*/
- /*  transform: scale(0.4);*/
- /* }*/
- /*.list-leave-active{*/
- /*  opacity: 0;*/
+  }
+  25%{opacity: 0.75;
+    transform: scale(0.8);
 
- /*  transition: all ease 0.6s;*/
- /*}*/
- /*.list-move{*/
+  }
+  50%{opacity: 0.50;
+    transform: scale(0.4);
 
- /*  transition: all ease 1s;*/
- /* }*/
+  }
+  75%{opacity: 0.35;
+    transform: scale(0.2);
+
+  }
+  100%{opacity: 0.25;
+    position: absolute;
+    transform: scale(0);
+    }
+}
+
+
 
 
 

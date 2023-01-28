@@ -106,8 +106,9 @@ export default {
 }
 
 .edit-button:hover{
-  transition: all 0.25s;
-  background-color: gray;
+  transition: all 0.4s;
+  background-color: lightblue;
+
 
 }
 .delete-button{

@@ -66,7 +66,7 @@ export default {
   },
 
   mounted() {
-    if(localStorage.item){
+    if(localStorage.item !== {}){
       this.checkList = JSON.parse(localStorage.item)
     }
   },

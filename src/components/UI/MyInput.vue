@@ -35,14 +35,17 @@ export default {
   width: 90%;
   height: 50px;
   margin: 5px;
-  border: solid black 2px;
+  border: none;
+  background-color: rgba(255,255,255, 0.3);
+  box-shadow: 3px 3px 6px rgba(200, 200, 200, 0.8), -3px 3px 6px rgba(200, 200, 200, 0.8) ;;
   border-radius: 16px;
+  transition: all ease-in-out 0.4s;
 }
 
 .MyInputWhite:focus{
-  transition: all ease-in-out 0.25s;
+  transition: all ease-in-out 0.4s;
   color: white;
-  background-color: gray;
+  background-color: lightblue;
   border-color: white;
   outline: white;
 }
