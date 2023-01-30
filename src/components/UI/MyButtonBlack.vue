@@ -17,6 +17,8 @@ export default {
   width: 100px;
   height: 50px;
   color: white;
+  border: none ;
+  box-shadow: 3px 3px 10px rgba(50, 50, 50, 0.4), -3px 3px 10px rgba(50, 50, 50, 0.4) ;
   background: #000000;
   border-radius: 16px;
   transition: ease-in-out 0.4s;

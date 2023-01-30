@@ -1,7 +1,7 @@
 <template>
 
 
-<transition name="item" appear >
+
   <div class="list-item">
     <div class="list-item__wrap">
       <h1>{{MyItem.name}}</h1>
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-</transition>
+
 
 </template>
 <script>
@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
   .list-item{
-    position: relative;
+    display: inline-block;
     font-family: 'Gothic A1', sans-serif;
     width: 300px;
     height: 300px;
@@ -77,22 +77,6 @@ export default {
   position: relative;
     height: 100%;
 
-  }
-
-
-  .item-enter-from{
-    opacity: 0;
-    transform: scale(0.6) ;
-
-  }
-  .item-enter-to{
-    opacity: 1;
-    transform: scale(1);
-  }
-
-
-  .item-enter-active{
-    transition: all ease 0.5s;
   }
 
 

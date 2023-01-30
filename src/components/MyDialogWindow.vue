@@ -9,14 +9,10 @@
             :value="modelValue.name"
             @input="updateInput"
         ></my-input>
-                <button
-                    class="delete-button"
-                    @click="$emit('clearName')"
-                >X</button>
-        <my-input
+        <MyTextarea
             :value="modelValue.body"
             @input="updateInput1"
-        ></my-input>
+        ></MyTextarea>
               <button
                   @click="$emit('clearBody')"
                   class="delete-button"
@@ -43,8 +39,10 @@
 
 <script>
 
+import MyTextarea from "@/components/UI/MyTextArea";
 export default {
   name: "MyDialogWindow",
+  components: {MyTextarea},
   props: {
     status: Boolean,
     show: Boolean,
@@ -92,7 +90,7 @@ export default {
 }
 
 .TextArea {
-  left: 0;
+position: relative;
   width: 70%;
   height: 100%;
 }
@@ -112,6 +110,9 @@ export default {
 
 }
 .delete-button{
+  left : 326px;
+  top: 72px;
+  position: absolute;
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -131,13 +132,13 @@ export default {
 .dive-enter-active {
   transition: all ease-in-out .75s;
 }
-.dive-leve-from{
+.dive-leave-from{
 
 }
-.dive-leve-to {
+.dive-leave-to {
 
 }
-.dive-leve-active {
+.dive-leave-active {
   transition: ease-in-out .75s;
 }
 

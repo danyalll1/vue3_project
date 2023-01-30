@@ -4,7 +4,7 @@
 
 
 
-               <transition-group  tag="div" class="checkList" name="list" v-if="items.length > 0" >
+               <transition-group  tag="div" class="checkList" name="list" v-if="items.length > 0" mode="out-in" @after-leave="relist">
                  <div class="wrap" v-for="item in items"
                       :key="item">
                      <MyListItem class="item"
@@ -16,9 +16,7 @@
                      >
                      </MyListItem>
                  </div>
-
               </transition-group>
-
 
 
 
@@ -38,6 +36,7 @@ import MyListItem from "@/components/MyListItem";
 export default {
   name: "MyCheckList",
   components: {
+
     MyListItem
   },
   props: {
@@ -45,6 +44,16 @@ export default {
       type: Array,
       required: true
     }
+  },
+  methods:{
+
+
+    relist(el){
+      console.log(el)
+
+      }
+
+
   }
 }
 </script>
@@ -54,12 +63,14 @@ export default {
    position: absolute;
    z-index: 1;
    display: grid;
+
    grid-template-columns: repeat(3, 350px);
    grid-auto-rows: 350px;
  }
 
  .wrap{
-   display: flex;
+   position: relative;
+   display: inline-block;
    align-items: center;
    width: 100%;
    height: 100%;
@@ -67,55 +78,43 @@ export default {
 
  /*list transitions*/
 
-.list-leave-from{
-  transform: scale(1);
-  opacity: 1;
-}
-.list-leave-to{
-  transform: scale(0.4);
-  transition: transform ease 0.8s;
-  opacity: 0;
 
-}
 
-.list-leave-active{
-  position: absolute;
-  transition: all ease 0.4s;
 
-}
+ .list-enter-from{
+   opacity: 0;
+   transform: scale(0.6) ;
+
+ }
+ .list-enter-to{
+   opacity: 1;
+   transform: scale(1);
+ }
+
+
+ .list-enter-active{
+   transition: all 0.75s;
+ }
+
+ .list-leave-from{
+   transform: scale(1);
+   opacity: 1;
+
+
+ }
+ .list-leave-to{
+   opacity: 0;
+   transform: scale(0.6) ;
+ }
+
+ .list-leave-active {
+   transition: transfrom 0.7s;
+   position: absolute;
+ }
 
 .list-move{
-  transition: transform ease 0.8s;
+  transition: all 0.7s;
 }
-
-
-
-@keyframes leaving {
-
-  0%{opacity: 1;
-  transform: scale(1);
-
-  }
-  25%{opacity: 0.75;
-    transform: scale(0.8);
-
-  }
-  50%{opacity: 0.50;
-    transform: scale(0.4);
-
-  }
-  75%{opacity: 0.35;
-    transform: scale(0.2);
-
-  }
-  100%{opacity: 0.25;
-    position: absolute;
-    transform: scale(0);
-    }
-}
-
-
-
 
 
 
