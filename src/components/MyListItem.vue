@@ -42,6 +42,9 @@ export default {
 
 <style scoped>
   .list-item{
+
+    position: relative;
+    z-index: 1;
     display: inline-block;
     font-family: 'Gothic A1', sans-serif;
     width: 300px;

@@ -37,7 +37,7 @@ export default {
   margin: 5px;
   border: none;
   background-color: rgba(255,255,255, 0.3);
-  box-shadow: 3px 3px 6px rgba(200, 200, 200, 0.8), -3px 3px 6px rgba(200, 200, 200, 0.8) ;;
+  box-shadow: 3px 3px 6px rgba(200, 200, 200, 0.8), -3px 3px 6px rgba(200, 200, 200, 0.8) ;
   border-radius: 16px;
   transition: all ease-in-out 0.4s;
 }

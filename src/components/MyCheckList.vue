@@ -4,11 +4,11 @@
 
 
 
-               <transition-group  tag="div" class="checkList" name="list" v-if="items.length > 0" mode="out-in" @after-leave="relist">
+               <transition-group  tag="div" class="checkList" name="list" v-if="items.length !==0" @before-leave="Scaling" appear>
                  <div class="wrap" v-for="item in items"
                       :key="item">
                      <MyListItem class="item"
-                                  v-if="item.name !== 0"
+
                                  :MyItem="item"
                                  @delete="$emit('delete',item.id)"
                                  @edit="$emit('edit',item)"
@@ -31,7 +31,7 @@
 <script>
 
 import MyListItem from "@/components/MyListItem";
-
+import {gsap} from "gsap";
 
 export default {
   name: "MyCheckList",
@@ -46,22 +46,25 @@ export default {
     }
   },
   methods:{
+    Scaling(el){
+      console.log(el.childNodes);
+      gsap.to(el.childNodes,{
+        duration: 0.3,
+        scale: 0.1,
+        opacity: 0,
+        display: 0,
+      })
+    }
+  },
 
 
-    relist(el){
-      console.log(el)
-
-      }
-
-
-  }
 }
 </script>
 
 <style scoped>
  .checkList{
    position: absolute;
-   z-index: 1;
+   z-index: 2;
    display: grid;
 
    grid-template-columns: repeat(3, 350px);
@@ -70,8 +73,8 @@ export default {
 
  .wrap{
    position: relative;
-   display: inline-block;
-   align-items: center;
+    display: inline-block;
+
    width: 100%;
    height: 100%;
  }
@@ -97,23 +100,25 @@ export default {
  }
 
  .list-leave-from{
-   transform: scale(1);
-   opacity: 1;
-
 
  }
+
  .list-leave-to{
-   opacity: 0;
-   transform: scale(0.6) ;
+
  }
+
+
+
+
 
  .list-leave-active {
-   transition: transfrom 0.7s;
    position: absolute;
+   transition: all 0.7s;
+
  }
 
 .list-move{
-  transition: all 0.7s;
+  transition: all 0.7s 0.5s;
 }
 
 

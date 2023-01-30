@@ -45,6 +45,7 @@ import MyCheckList from "@/components/MyCheckList";
 import MyDialogWindow from "@/components/MyDialogWindow";
 
 export default {
+
   name: 'App',
   components: {
     MyDialogWindow,
@@ -55,9 +56,7 @@ export default {
 
   data() {
     return {
-      checkList: [
-        {}
-      ],
+      checkList: [],
       EditPopUpVisible: false,
       EditedItem: {},
       EditedItemStatus: true
@@ -65,15 +64,15 @@ export default {
     }
   },
 
-  mounted() {
-    if(localStorage.item !== {}){
-      this.checkList = JSON.parse(localStorage.item)
-    }
+  beforeMount() {
+    this.$nextTick(function () {if(localStorage.item !== {}){
+      this.checkList = JSON.parse(localStorage.item)}
+
+    })
   },
 
   methods: {
     DeleteItem(item) {
-      console.log (this.checkList)
       this.checkList.splice(this.checkList.findIndex(el => el.id ===item),1)
       this.SetLocalStorage()
     }
@@ -128,7 +127,6 @@ export default {
           if (Object.keys(this.EditedItem).length > 0) {
             this.EditedItem.color = this.GetColor()
             this.EditedItem.id = Date.now()
-            console.log(this.EditedItem)
             this.checkList.push(this.EditedItem)
             this.SetLocalStorage()
             this.HidePopup()
