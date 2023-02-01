@@ -18,7 +18,12 @@
     <div class="header">
       <h1>Notes</h1>
       <div class="button-container">
+        <my-input
+        v-model="searchQuery"
+        >
+        </my-input>
         <MyButtonBlack
+            style="margin-left: 10px"
             @click="CreateItem"
         >create
         </MyButtonBlack>
@@ -33,7 +38,7 @@
     <div class="wrap">
       <MyCheckList
           v-model:listStatus = "ListMount"
-          :items="checkList"
+          :items="sortedAndSearchedList"
           @delete="DeleteItem"
           @edit="EditItem"
           @status = "AfterMount"
@@ -70,7 +75,8 @@ export default {
       EditedItem: {},
       EditedItemStatus: true,
       ListMount : false,
-      selectedSort:' ',
+      selectedSort:'name',
+      searchQuery: '',
       sortOptions: [
         {value: 'name', name: 'По названию'},
         {value: 'body', name: 'По содержимому'},
@@ -80,19 +86,21 @@ export default {
     }
   },
 
-  watch:{
-    selectedSort(){
+
+
+  computed:{
+    sortedList(){
       if (this.selectedSort === 'id'){
-        this.checkList.sort((item1,item2)=>
-            item1[this.selectedSort] - (item2[this.selectedSort]))
+      return [...this.checkList].sort((item1,item2)=>
+          item1[this.selectedSort] - (item2[this.selectedSort]))
       }
-      else{
-        this.checkList.sort((item1,item2)=>
+      else {
+        return [...this.checkList].sort((item1,item2)=>
             item1[this.selectedSort].localeCompare(item2[this.selectedSort]))
       }
-
-
-
+      },
+    sortedAndSearchedList(){
+      return this.sortedList.filter(item => item.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
 
@@ -102,6 +110,9 @@ export default {
 
     })
   },
+
+
+
 
   methods: {
     DeleteItem(item) {
@@ -149,10 +160,6 @@ export default {
     AfterMount(){
       this.ListMount = true
     },
-
-
-
-
     SubmitEditing() {
       let index = this.checkList.findIndex(e => e.id === this.EditedItem.id)
       switch (this.EditedItemStatus) {
@@ -182,9 +189,9 @@ export default {
     }
   }
 }
-
-
 </script>
+
+
 
 <style>
 * {
@@ -228,8 +235,8 @@ export default {
 .button-container{
 
   display: flex;
-  justify-content: flex-end;
-  width: auto;
+  justify-content:flex-start;
+  align-items: center;
 }
 
 .window-enter-from{

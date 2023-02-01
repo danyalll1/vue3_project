@@ -1,6 +1,6 @@
 <template>
     <select  @change="changeHandler" class="select">
-      <option disabled selected value = ' '>Pick from list</option>
+      <option disabled value = ' '>Pick from list</option>
       <option v-for="option in options "
               :key="option.value"
               :value="option.value"

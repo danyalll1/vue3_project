@@ -25,10 +25,14 @@
 
 
 
+  <transition name="else" v-else >
+    <h2  class="else">
+      Empty like your heart
+    </h2>
+  </transition>
 
-  <h2 v-else>
-    Empty like your heart
-  </h2>
+
+
 
 </template>
 
@@ -134,9 +138,33 @@ export default {
    height: 100%;
  }
 
-
+.else{
+  background-color: rgba(255, 255, 255, 0.6) ;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  position: fixed;
+  font-family: 'Gothic A1', sans-serif;;
+  font-weight: 400;
+  font-size: 26px;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
  /*list transitions*/
+
+
+ .else-enter-active,
+ .else-leave-active {
+   transition: opacity 0.5s ease 1s;
+ }
+
+ .else-enter-from,
+ .else-leave-to {
+   opacity: 0;
+ }
 
 
 
