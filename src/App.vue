@@ -17,20 +17,27 @@
 
     <div class="header">
       <h1>Notes</h1>
-      <MyButtonBlack
-          @click="CreateItem"
-      >create
-      </MyButtonBlack>
+      <div class="button-container">
+        <MyButtonBlack
+            @click="CreateItem"
+        >create
+        </MyButtonBlack>
+        <MySelect
+            v-model="selectedSort"
+            :options="sortOptions"
+        >
+        </MySelect>
+      </div>
+
     </div>
     <div class="wrap">
-
-
       <MyCheckList
+          v-model:listStatus = "ListMount"
           :items="checkList"
           @delete="DeleteItem"
           @edit="EditItem"
+          @status = "AfterMount"
       >
-
       </MyCheckList>
     </div>
   </div>
@@ -43,11 +50,13 @@
 import MyButtonBlack from "@/components/UI/MyButtonBlack";
 import MyCheckList from "@/components/MyCheckList";
 import MyDialogWindow from "@/components/MyDialogWindow";
+import MySelect from "@/components/UI/MySelect";
 
 export default {
 
   name: 'App',
   components: {
+    MySelect,
     MyDialogWindow,
     MyCheckList,
     MyButtonBlack
@@ -59,7 +68,30 @@ export default {
       checkList: [],
       EditPopUpVisible: false,
       EditedItem: {},
-      EditedItemStatus: true
+      EditedItemStatus: true,
+      ListMount : false,
+      selectedSort:' ',
+      sortOptions: [
+        {value: 'name', name: 'По названию'},
+        {value: 'body', name: 'По содержимому'},
+        {value: 'id', name: 'По id'},
+
+      ]
+    }
+  },
+
+  watch:{
+    selectedSort(){
+      if (this.selectedSort === 'id'){
+        this.checkList.sort((item1,item2)=>
+            item1[this.selectedSort] - (item2[this.selectedSort]))
+      }
+      else{
+        this.checkList.sort((item1,item2)=>
+            item1[this.selectedSort].localeCompare(item2[this.selectedSort]))
+      }
+
+
 
     }
   },
@@ -114,6 +146,9 @@ export default {
         let color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
         return color;
     },
+    AfterMount(){
+      this.ListMount = true
+    },
 
 
 
@@ -156,7 +191,6 @@ export default {
   padding: 0;
   margin: 0;
 }
-
 .root{
   flex-direction: column;
   width: 100%;
@@ -166,24 +200,36 @@ export default {
 }
 
 .header{
-  margin-top: 2%;
-  margin-bottom: 2%;
+  background-color: rgba(255, 255, 255, 0.6) ;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  position: fixed;
   font-family: 'Gothic A1', sans-serif;;
   font-weight: 400;
   font-size: 26px;
-  height: 60px;
+  height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
+
+
 .wrap{
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   width: 100%;
   height: 100%;
 
+}
+
+.button-container{
+
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
 }
 
 .window-enter-from{

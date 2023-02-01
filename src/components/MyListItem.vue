@@ -42,13 +42,12 @@ export default {
 
 <style scoped>
   .list-item{
-
     position: relative;
     z-index: 1;
     display: inline-block;
     font-family: 'Gothic A1', sans-serif;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border-radius: 16px;
     box-shadow: 3px 3px 6px rgba(200, 200, 200, 0.8), -3px 3px 6px rgba(200, 200, 200, 0.8) ;
     padding: 5%;
@@ -76,7 +75,8 @@ export default {
 
   }
   .list-item__wrap{
-
+    justify-self: center;
+    align-self: center;
   position: relative;
     height: 100%;
 
