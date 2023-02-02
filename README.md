@@ -1,4 +1,4 @@
-ToDoLsit на Vue
+ToDoLsit on Vue
 
 # vue_17_01
 
