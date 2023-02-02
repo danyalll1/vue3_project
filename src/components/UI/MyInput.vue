@@ -32,11 +32,10 @@ export default {
   font-family: 'Gothic A1', sans-serif;;
   font-weight: 400;
   font-size: 20px;
-  width: 90%;
+  width: 50%;
   height: 50px;
-  margin: 5px;
   border: none;
-  background-color: rgba(255,255,255, 0.3);
+  background-color: rgba(255,255,255, 1);
   box-shadow: 3px 3px 6px rgba(200, 200, 200, 0.8), -3px 3px 6px rgba(200, 200, 200, 0.8) ;
   border-radius: 16px;
   transition: all ease-in-out 0.4s;
@@ -44,8 +43,8 @@ export default {
 
 .MyInputWhite:focus{
   transition: all ease-in-out 0.4s;
-  color: white;
-  background-color: lightblue;
+  color: black;
+  background-color: lightcyan;
   border-color: white;
   outline: white;
 }

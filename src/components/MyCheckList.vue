@@ -4,7 +4,7 @@
 
 
 
-               <transition-group  tag="div" class="checkList" name="list" v-if="items.length !==0"
+               <transition-group  tag="div" class="checkList" name="list" v-if="items.length!==0"
                                   @enter = "Sliding"
                                   @before-enter = "StartPos"
                                   @before-leave="Scaling" appear>
@@ -20,16 +20,18 @@
                      >
                      </MyListItem>
                  </div>
-              </transition-group>
+               </transition-group>
 
 
 
 
-  <transition name="else" v-else >
-    <h2  class="else">
-      Empty like your heart
-    </h2>
-  </transition>
+
+  <h2  class="else" v-else >
+    Empty like your heart
+  </h2>
+
+
+
 
 
 
@@ -52,51 +54,48 @@ export default {
       type: Array,
       required: true
     },
-    listStatus:{
+    listStatus: {
       type: Boolean,
       required: true,
     }
   },
-  methods:{
-    StartPos(el){
-      if (this.listStatus === false){
-        let rnd = ()=>{
-          if (Math.floor(Math.random()*2) ===  0){
-            return `X(${((Math.random() < 0.5) ? '-' : '')}${ Math.floor(Math.random()*(200-100)+100)}px)`;
-          }
-          else {
-            return  `Y(${((Math.random() < 0.5) ? '-' : '')}${ Math.floor(Math.random()*(200-100)+100)}px)`;
+  methods: {
+    StartPos(el) {
+      if (this.listStatus === false) {
+        let rnd = () => {
+          if (Math.floor(Math.random() * 2) === 0) {
+            return `X(${((Math.random() < 0.5) ? '-' : '')}${Math.floor(Math.random() * (200 - 100) + 100)}px)`;
+          } else {
+            return `Y(${((Math.random() < 0.5) ? '-' : '')}${Math.floor(Math.random() * (200 - 100) + 100)}px)`;
           }
         }
         el.style.opacity = 0;
         el.style.transform = `translate${rnd()}`
-      }
-      else{
+      } else {
         el.style.opacity = 0
         el.style.transform = "Scale(0.3)"
       }
 
-    } ,
+    },
 
 
-    Sliding(el,done){
-      if (this.listStatus === false){
-        gsap.to(el,{
+    Sliding(el, done) {
+      if (this.listStatus === false) {
+        gsap.to(el, {
           opacity: 1,
-          y:0,
-          x:0,
+          y: 0,
+          x: 0,
           duration: 0.8,
           onComplete: done,
           delay: el.dataset.index * 0.2
         })
         this.$emit('status')
-      }
-      else{
+      } else {
         gsap.to(el, {
-          x:0,
-          y:0
+          x: 0,
+          y: 0
         })
-        gsap.to(el,{
+        gsap.to(el, {
           opacity: 1,
           scale: 1,
           duration: 0.7,
@@ -105,16 +104,16 @@ export default {
     },
 
 
-    Scaling(el){
-      gsap.to(el.childNodes,{
+    Scaling(el) {
+      gsap.to(el.childNodes, {
         duration: 0.3,
         scale: 0.1,
         opacity: 0,
         display: 0,
       })
-    }
-  },
+    },
 
+  },
 
 }
 </script>
@@ -139,6 +138,7 @@ export default {
  }
 
 .else{
+  display: flex;
   background-color: rgba(255, 255, 255, 0.6) ;
   backdrop-filter: blur(10px);
   z-index: 1000;
@@ -148,7 +148,7 @@ export default {
   font-size: 26px;
   height: 70px;
   width: 100%;
-  display: flex;
+
   justify-content: space-evenly;
   align-items: center;
 }
@@ -156,15 +156,8 @@ export default {
  /*list transitions*/
 
 
- .else-enter-active,
- .else-leave-active {
-   transition: opacity 0.5s ease 1s;
- }
 
- .else-enter-from,
- .else-leave-to {
-   opacity: 0;
- }
+
 
 
 

@@ -31,15 +31,15 @@ export default {
 
 .MyTextArea {
   resize: none;
-  padding: 30px 30px 0 30px;
+  padding: 3% 3% 3% 3%;
   font-family: 'Gothic A1', sans-serif;;
   font-weight: 400;
   font-size: 20px;
-  width: 85%;
-  height:76%;
-  margin: 5px 0 5px 5px;
+  width: 100%;
+  height: 100%;
+
   border: none;
-  background-color: rgba(255,255,255, 0.3);
+  background-color: rgba(255,255,255, 1);
   box-shadow: 3px 3px 6px rgba(200, 200, 200, 0.8), -3px 3px 6px rgba(200, 200, 200, 0.8) ;;
   border-radius: 16px;
   transition: all ease-in-out 0.4s;
@@ -47,9 +47,9 @@ export default {
 
 .MyTextArea:focus{
   transition: all ease-in-out 0.4s;
-  color: white;
-  background-color: lightblue;
-  border-color: white;
+  color: black;
+  background-color: lightcyan;
+  border-color: black;
   outline: white;
 }
 </style>

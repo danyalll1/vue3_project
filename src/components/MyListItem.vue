@@ -54,6 +54,7 @@ export default {
     box-sizing: border-box;
     transition: ease-in-out 0.25s;
 
+
   }
   .list-item:hover{
     box-shadow: 3px 3px 10px rgba(150, 150, 150, 0.8), -3px 3px 10px rgba(150, 150, 150, 0.8) ;

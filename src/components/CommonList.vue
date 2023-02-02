@@ -1,0 +1,177 @@
+<template>
+
+
+
+
+
+  <transition-group  tag="div" class="checkList" name="list" v-if="items.length!==0"
+                     @enter = "Sliding"
+                     @before-enter = "StartPos"
+                     @before-leave="Scaling" appear>
+    <div class="wrap" v-for="(item, idx) in items "
+         :key="item"
+         :data-index='idx'>
+      <MyLi class="item"
+
+                  :MyItem="item"
+                  @delete="$emit('delete',item.id)"
+                  @edit="$emit('edit',item)"
+                  :style="{ backgroundColor: item.color}"
+      >
+      </MyLi>
+    </div>
+  </transition-group>
+
+
+
+
+
+  <h2  class="else" v-else >
+    Empty like your heart
+  </h2>
+
+
+
+
+
+
+
+</template>
+
+<script>
+
+import MyLi from "@/components/MyLi";
+import {gsap} from "gsap";
+
+export default {
+  name: "CommonList",
+  components: {
+    MyLi
+
+  },
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    listStatus: {
+      type: Boolean,
+      required: true,
+    }
+  },
+  methods: {
+    StartPos(el) {
+      if (this.listStatus === false) {
+        el.style.opacity = 0;
+        el.style.transform ='translateX(-100px)'
+      } else {
+        el.style.opacity = 0
+        el.style.transform = "Scale(0.3)"
+      }
+
+    },
+
+
+    Sliding(el, done) {
+      if (this.listStatus === false) {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          x: 0,
+          duration: 0.8,
+          onComplete: done,
+          delay: el.dataset.index * 0.2
+        })
+        this.$emit('status')
+      } else {
+        gsap.to(el, {
+          x: 0,
+          y: 0
+        })
+        gsap.to(el, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.7,
+        })
+      }
+    },
+
+
+    Scaling(el) {
+      gsap.to(el.childNodes, {
+        duration: 0.3,
+        scale: 0.1,
+        opacity: 0,
+        display: 0,
+      })
+    },
+
+  },
+
+}
+</script>
+
+<style scoped>
+.checkList{
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.wrap{
+  padding: 25px;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.else{
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.6) ;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  position: fixed;
+  font-family: 'Gothic A1', sans-serif;;
+  font-weight: 400;
+  font-size: 26px;
+  height: 70px;
+  width: 100%;
+
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+
+/*list transitions*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.list-leave-active {
+
+  position: absolute;
+  transition: ease-in-out all 0.7s;
+
+}
+
+.list-move{
+  transition: all  0.7s 0.5s;
+}
+
+
+
+</style>
