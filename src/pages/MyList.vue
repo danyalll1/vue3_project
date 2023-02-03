@@ -1,4 +1,5 @@
 <template>
+
   <transition name="window">
     <my-dialog-window
         v-model:show="EditPopUpVisible"
@@ -36,8 +37,6 @@
   <div class="wrap">
   <CommonList v-model:listStatus = "ListMount"
               :items="sortedAndSearchedList"
-              @delete="DeleteItem"
-              @edit="EditItem"
               @status = "AfterMount">>
   </CommonList>
   </div>
@@ -47,8 +46,11 @@
 
 import CommonList from "@/components/CommonList";
 import MyButtonBlack from "@/components/UI/MyButtonBlack";
-import MyDialogWindow from "@/components/MyDialogWindow";
 import MySelect from "@/components/UI/MySelect";
+import MyDialogWindow from "@/components/MyDialogWindow";
+import {getTodos} from "@/hooks/GetTodos";
+import getSortedToDos from "@/hooks/GetSortedToDos";
+import getSortedAndSearchToDos from "@/hooks/GetSortedAndSearchToDos";
 
 export default {
 
@@ -56,20 +58,17 @@ export default {
   components: {
     CommonList,
     MySelect,
-    MyDialogWindow,
-    MyButtonBlack
+    MyButtonBlack,
+    MyDialogWindow
   },
 
 
   data() {
     return {
-      checkList: [],
       EditPopUpVisible: false,
       EditedItem: {},
       EditedItemStatus: true,
       ListMount : false,
-      selectedSort:'name',
-      searchQuery: '',
       sortOptions: [
         {value: 'name', name: 'По названию'},
         {value: 'body', name: 'По содержимому'},
@@ -78,49 +77,30 @@ export default {
       ]
     }
   },
+  setup(){
+    const {checkList} = getTodos()
+    const {selectedSort,sortTodos} = getSortedToDos(checkList)
+    const {searchQuery, sortedAndSearchedList} = getSortedAndSearchToDos(sortTodos)
 
 
+    return{
+      checkList,
+      selectedSort,
+      sortTodos,
+      searchQuery,
+      sortedAndSearchedList,
 
-  computed:{
-    sortedList(){
-      if (this.selectedSort === 'id'){
-        return [...this.checkList].sort((item1,item2)=>  /// Получение нового массива по исходному, его сортировка
-            item1[this.selectedSort] - (item2[this.selectedSort]))  //Затем биндим это компьютед свойство в :items MyCheckList
-      }
-      else {
-        return [...this.checkList].sort((item1,item2)=>
-            item1[this.selectedSort].localeCompare(item2[this.selectedSort]))
-      }
-    },
-    sortedAndSearchedList(){
-      return this.sortedList.filter(item => item.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
 
-  beforeMount() {
-    this.$nextTick(function () {if(localStorage.item !== {}){
-      this.checkList = JSON.parse(localStorage.item)}
 
-    })
-  },
+
+
 
 
 
 
   methods: {
-    DeleteItem(item) {
-      this.checkList.splice(this.checkList.findIndex(el => el.id ===item),1)
-      this.SetLocalStorage()
-    }
-    ,
-
-    EditItem(item) {
-      this.EditPopUpVisible = true
-      this.EditedItemStatus = false
-      this.EditedItem = JSON.parse(JSON.stringify(item)) //скопирует item и положит его в editeditem
-    }
-    ,
-
     HidePopup() {
       this.EditPopUpVisible = false
     }

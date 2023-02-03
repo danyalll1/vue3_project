@@ -3,7 +3,7 @@ import App from './App.vue'
 import MyButtonBlack from "@/components/UI/MyButtonBlack";
 import myButtonWhite from "@/components/UI/MyButtonWhite";
 import MyInput from "@/components/UI/MyInput";
-import router from "@/components/router/router";
+import router from "@/router/router";
 
 
 const app = createApp(App)

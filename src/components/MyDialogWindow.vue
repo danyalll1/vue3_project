@@ -1,8 +1,8 @@
 <template>
-  <div class="background" v-if="show === true" @click="$emit('hide')">
+  <div class="background" v-if="show === true" @mousedown="$emit('hide')">
 
     <transition name="dive">
-    <div @click.stop v-if="show === true" class="popup-window">
+    <div @click.stop @mousedown.stop v-if="show === true" class="popup-window">
       <div class="input-wrap">
       <my-input
           :value="modelValue.name"

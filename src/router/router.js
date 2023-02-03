@@ -1,8 +1,8 @@
 
 import {createRouter} from  "vue-router"
 import {createWebHistory} from "vue-router";
-import MyTiles from "@/components/pages/Tiles";
-import myList from "@/components/pages/MyList";
+import MyTiles from "@/pages/Tiles";
+import myList from "@/pages/MyList";
 
 const routes = [
       {
