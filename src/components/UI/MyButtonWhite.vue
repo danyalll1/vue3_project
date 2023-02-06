@@ -24,6 +24,7 @@ export default {
   transition: ease-in-out 0.4s;
 }
 .btn-white:hover{
+  color: white;
   transition: ease-in-out 0.4s;
   background-color: transparent ;
   backdrop-filter: saturate(0.5); /* контрастный background-color */

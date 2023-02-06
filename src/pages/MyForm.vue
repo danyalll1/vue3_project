@@ -2,19 +2,33 @@
   <div class="wrap">
 
     <form action="post" class="my-form" @submit.prevent>
-      <h1>Form</h1>
-      <label for="login"></label>
-      <input type="text" id="login" v-model="newUser.login">
-      <label for="password"></label>
-      <input type="text" id="password" v-model="newUser.password">
-      <input type="text" id="e-mail" v-model="newUser.Email">
-      <button type="submit" @click="postFrom">submit</button>
+      <h1>Registration</h1>
+      <label for="login" style="color: white">Login</label>
+      <my-input type="text" id="login" v-model="newUser.login"></my-input>
+      <label for="password" style="color: white">Password</label>
+      <my-input type="text" id="password" v-model="newUser.password"></my-input>
+      <label for="password" style="color: white">Email</label>
+      <my-input type="text" id="e-mail" v-model="newUser.Email"></my-input>
+      <my-button-white
+          type="submit"
+          @click="postFrom"
+      >
+        submit
+      </my-button-white>
     </form>
   </div>
 </template>
 
+
 <script>
+import MyInput from "@/components/UI/MyInput";
+
+
 export default {
+  components:{
+    MyInput
+
+  },
   name: "MyForm",
   data(){
     return{
@@ -27,6 +41,7 @@ export default {
       text:'',
     }
   },
+
   methods:{
     postFrom(){
       JSON.stringify(this.newUser)
@@ -51,6 +66,13 @@ export default {
 }
 
 .my-form{
+  color: rgba(255,255,255,1);
+  font-family: 'Gothic A1', sans-serif;
+  padding: 16px;
+  width: 300px;
+  height: 350px;
+  border-radius: 16px;
+  background-color: rgba(221, 24, 70, 0.8);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import { VuelidatePlugin } from '@vuelidate/core'
 import MyButtonBlack from "@/components/UI/MyButtonBlack";
 import myButtonWhite from "@/components/UI/MyButtonWhite";
 import MyInput from "@/components/UI/MyInput";
@@ -12,7 +13,7 @@ app.component('MyButtonBlack', MyButtonBlack)
 app.component('MyButtonWhite',myButtonWhite)
 app.component('MyInput',MyInput)
 
-
+app.use(VuelidatePlugin)
 app.use(router)
 app.mount('#app')
 
