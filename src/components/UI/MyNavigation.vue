@@ -3,6 +3,7 @@
   <div class="container">
     <my-button-black class="nav-btn" @click="$router.push('/')">Tiles</my-button-black >
     <MyButtonBlack class="nav-btn" @click="$router.push('/List')">List</MyButtonBlack>
+    <MyButtonBlack class="nav-btn" @click="$router.push('/Form')">Form</MyButtonBlack>
   </div>
 </div>
 </template>

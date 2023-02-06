@@ -51,6 +51,7 @@ import MyDialogWindow from "@/components/MyDialogWindow";
 import {getTodos} from "@/hooks/GetTodos";
 import getSortedToDos from "@/hooks/GetSortedToDos";
 import getSortedAndSearchToDos from "@/hooks/GetSortedAndSearchToDos";
+import {Edited} from "@/hooks/Edited";
 
 export default {
 
@@ -65,10 +66,6 @@ export default {
 
   data() {
     return {
-      EditPopUpVisible: false,
-      EditedItem: {},
-      EditedItemStatus: true,
-      ListMount : false,
       sortOptions: [
         {value: 'name', name: 'По названию'},
         {value: 'body', name: 'По содержимому'},
@@ -79,16 +76,20 @@ export default {
   },
   setup(){
     const {checkList} = getTodos()
-    const {selectedSort,sortTodos} = getSortedToDos(checkList)
+    const {selectedSort, sortTodos} = getSortedToDos(checkList)
     const {searchQuery, sortedAndSearchedList} = getSortedAndSearchToDos(sortTodos)
+    const {EditedItemStatus, EditedItem ,EditPopUpVisible, ListMount} =Edited()
 
-
-    return{
+    return {
       checkList,
       selectedSort,
       sortTodos,
       searchQuery,
       sortedAndSearchedList,
+      EditedItemStatus,
+      EditedItem ,
+      EditPopUpVisible,
+      ListMount
 
     }
   },

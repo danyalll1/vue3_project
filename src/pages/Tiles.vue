@@ -55,6 +55,7 @@ import MySelect from "@/components/UI/MySelect";
 import {getTodos} from "@/hooks/GetTodos";
 import getSortedToDos from "@/hooks/GetSortedToDos";
 import getSortedAndSearchToDos from "@/hooks/GetSortedAndSearchToDos";
+import {Edited} from "@/hooks/Edited";
 
 export default {
 
@@ -69,10 +70,6 @@ export default {
 
   data() {
     return {
-      EditPopUpVisible: false,
-      EditedItem: {},
-      EditedItemStatus: true,
-      ListMount : false,
       sortOptions: [
         {value: 'name', name: 'По названию'},
         {value: 'body', name: 'По содержимому'},
@@ -86,7 +83,7 @@ export default {
     const {checkList} = getTodos()
     const {selectedSort, sortTodos} = getSortedToDos(checkList)
     const {searchQuery, sortedAndSearchedList} = getSortedAndSearchToDos(sortTodos)
-
+    const {EditedItemStatus, EditedItem ,EditPopUpVisible, ListMount} =Edited()
 
     return {
       checkList,
@@ -94,6 +91,10 @@ export default {
       sortTodos,
       searchQuery,
       sortedAndSearchedList,
+      EditedItemStatus,
+      EditedItem ,
+      EditPopUpVisible,
+      ListMount
 
     }
   },
