@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-.li-item {
+.li-item{
   position: relative;
   z-index: 1;
   display: inline-block;
@@ -41,17 +41,20 @@ export default {
   width: 600px;
   height: 250px;
   border-radius: 16px;
-  box-shadow: 3px 3px 6px rgba(200, 200, 200, 0.8), -3px 3px 6px rgba(200, 200, 200, 0.8);
+  box-shadow: 3px 3px 6px rgba(200, 200, 200, 0.8), -3px 3px 6px rgba(200, 200, 200, 0.8) ;
   padding: 5%;
   box-sizing: border-box;
   transition: ease-in-out 0.25s;
+
+
+}
+.list-item:hover{
+  box-shadow: 3px 3px 10px rgba(150, 150, 150, 0.8), -3px 3px 10px rgba(150, 150, 150, 0.8) ;
+  transition: ease-in-out 0.25s;
+  transform: translate(0px,-1%)
 }
 
-
-
-
-.li-item p{
-
+.list-item p {
   height: auto;
   word-break: break-all;
 }
@@ -64,4 +67,14 @@ export default {
   justify-content: space-between;
 
 }
+.list-item__wrap{
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  height: 100%;
+
+}
+
+
+
 </style>
