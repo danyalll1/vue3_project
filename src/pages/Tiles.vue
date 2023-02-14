@@ -52,6 +52,7 @@ import MyButtonBlack from "@/components/UI/MyButtonBlack";
 import MyCheckList from "@/components/MyCheckList";
 import MyDialogWindow from "@/components/MyDialogWindow";
 import MySelect from "@/components/UI/MySelect";
+import myInput from "@/components/UI/MyInput";
 import {getTodos} from "@/hooks/GetTodos";
 import getSortedToDos from "@/hooks/GetSortedToDos";
 import getSortedAndSearchToDos from "@/hooks/GetSortedAndSearchToDos";
@@ -64,7 +65,8 @@ export default {
     MySelect,
     MyDialogWindow,
     MyCheckList,
-    MyButtonBlack
+    MyButtonBlack,
+    myInput
   },
 
 
